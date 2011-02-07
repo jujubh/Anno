@@ -1,0 +1,20 @@
+<h1>Listing norms</h1>
+
+<table>
+  <tr>
+    <th>Norm</th>
+  </tr>
+
+<% @norms.each do |norm| %>
+  <tr>
+    <td><%=h norm.norm %></td>
+    <td><%= link_to 'Show', norm %></td>
+    <td><%= link_to 'Edit', edit_norm_path(norm) %></td>
+    <td><%= link_to 'Destroy', norm, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New norm', new_norm_path %>

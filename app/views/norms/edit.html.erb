@@ -1,0 +1,16 @@
+<h1>Editing norm</h1>
+
+<% form_for(@norm) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :norm %><br />
+    <%= f.text_field :norm %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @norm %> |
+<%= link_to 'Back', norms_path %>

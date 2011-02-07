@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Documents: <%= controller.action_name %></title>
+  <link rel="stylesheet" href="/stylesheets/screen.css" type="text/css" media="screen, projection">
+<link rel="stylesheet" href="/stylesheets/print.css" type="text/css" media="print">	
+<!--[if lt IE 8]><link rel="stylesheet" href="/stylesheets/ie.css" type="text/css" media="screen, projection"><![endif]-->
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"%>
+  <%= javascript_include_tag 'rails'%>
+  <%= javascript_include_tag 'jquery.simpleCombo'%>
+</head>
+<body>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<%= yield %>
+
+<script>
+	$('select.editable').simpleCombo();
+		
+	$('input').keydown(function(e) {
+		
+		
+			
+			var currentTabIndex = clickedElementPosition(e.srcElement);
+			
+            if (e.keyCode === 37) { // left
+            } else if (e.keyCode === 38) { // top
+            document.forms[0].elements[currentTabIndex-6].focus();
+            } else if (e.keyCode === 39) { // right
+            
+            } else if (e.keyCode === 40) { // bottom
+            document.forms[0].elements[currentTabIndex+6].focus();
+            }
+        });
+		
+	function clickedElementPosition(srcElement)
+	{
+		for (var i = 0; i < document.forms[0].elements.length; i++) {
+			if (srcElement === document.forms[0].elements[i]) {
+				return i;
+			}
+		}
+	}
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<h1>Listing partofspeeches</h1>
+
+<table>
+  <tr>
+    <th>Partofspeech</th>
+  </tr>
+
+<% @partofspeeches.each do |partofspeech| %>
+  <tr>
+    <td><%=h partofspeech.partofspeech %></td>
+    <td><%= link_to 'Show', partofspeech %></td>
+    <td><%= link_to 'Edit', edit_partofspeech_path(partofspeech) %></td>
+    <td><%= link_to 'Destroy', partofspeech, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New partofspeech', new_partofspeech_path %>

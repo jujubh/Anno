@@ -1,0 +1,15 @@
+<p>
+  <b>Name:</b>
+  <%=h @annotation.name %>
+</p>
+
+<p>
+  <b>Documentid:</b>
+  <%=h @annotation.document_id %>
+</p>
+
+  Lemma <%=h @annotation.lemma_id %>
+
+
+<%= link_to 'Edit', edit_annotation_path(@annotation) %> |
+<%= link_to 'Back', annotations_path %>

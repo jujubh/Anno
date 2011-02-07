@@ -1,0 +1,63 @@
+<h1>Editing document</h1>
+
+<% form_for @document do |document_form| %>
+
+  Document <%= document_form.label :name %>
+  <%= document_form.text_field :name %>
+  <br/>
+
+Annotations
+<table>
+<tr>
+	<th></th>
+	<th>Token</th>
+	<th>Lemma</th>
+	<th>POS</th>
+	<th>Norm</th>
+</tr>
+  <% document_form.fields_for :annotations do |annotation_form| %>
+  <tr>
+  	<td>
+  		<% unless annotation_form.object.new_record? %>
+      	<%= annotation_form.check_box '_delete' %>
+    	<% end %>
+	</td>
+	<td>
+		 <% annotation_form.fields_for :token do |token_form| %>
+			<%= token_form.text_field :token %>
+		<% end %>
+	</td>
+	<td>
+		<% annotation_form.fields_for :lemma do |lemma_form| %>
+			<%= lemma_form.text_field :lemma %>
+		<% end %>
+		
+		<%=
+		@items = Lemma.find(:all, :order => "lemma")
+		annotation_form.collection_select "lemma_id", @items, :id, :lemma, {:class=>'editable'}
+		%>
+		
+	</td>
+	<td>
+			
+		<%=
+		@items = Partofspeech.find(:all, :order => "partofspeech")
+		annotation_form.collection_select "partofspeech_id", @items, :id, :partofspeech 
+		%>
+		
+	</td>
+	<td>
+			
+		<%=
+		@items = Norm.find(:all, :order => "norm")
+		annotation_form.collection_select "norm_id", @items, :id, :norm, {:class=>'editable'} 
+		%>
+		
+	</td>
+		
+		 
+	</tr>
+  <% end %>
+</table>
+  <%= submit_tag %>
+<% end %>

@@ -1,0 +1,20 @@
+<h1>Editing document</h1>
+
+<% form_tag :action => 'post', :id => params[:id] do%>
+
+<p>
+  Document Name:
+  <%= text_field :document, :name %>
+</p>
+<h2>Annotations</h2>
+<% for @annotation in @document.annotations %>
+  <%= error_messages_for :annotation %>
+  <% fields_for "annotation[]" do |f| %>
+    <p><%= f.text_field :name %></p>
+	<% fields_for @annotation.token do |g| %>
+		<p><%= g.text_field :token %></p>
+	<% end %>
+  <% end %>
+<% end %>
+<p><%= submit_tag 'update' %></p>
+<% end %>

@@ -1,0 +1,19 @@
+
+<% form_tag :action => 'post', :id => params[:id] do%>
+
+<p>
+  Annotation Name:
+  <%= text_field :annotation, :name %>
+
+</p>
+
+	<% fields_for @annotation.token do |g| %>
+		<p><%= g.text_field :token %></p>
+	<% end %>
+	
+	<% fields_for @annotation.lemma_id do |h| %>
+		<p><%= h.text_field :lemma_id %></p>
+	<% end %>
+
+<p><%= submit_tag 'update' %></p>
+<% end %>

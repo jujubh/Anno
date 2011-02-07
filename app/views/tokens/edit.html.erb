@@ -1,0 +1,20 @@
+<h1>Editing token</h1>
+
+<% form_for(@token) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :token %><br />
+    <%= f.text_field :token %>
+  </p>
+  <p>
+    <%= f.label :annotation_id %><br />
+    <%= f.text_field :annotation_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @token %> |
+<%= link_to 'Back', tokens_path %>

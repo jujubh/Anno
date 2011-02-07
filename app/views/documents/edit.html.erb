@@ -1,0 +1,61 @@
+<% form_for @document do |document_form| %>
+<div class="span-15 prepend-1 colborder"> 
+<table>
+	<thead>
+		<tr>
+			<th>Token</th>
+			<th>Lemma</th>
+			<th>Norm</th>
+			<th>POS</th>
+		</tr>
+	</thead>
+  <% document_form.fields_for :annotations do |annotation_form| %>
+  <tr>
+	<td>
+		 <% annotation_form.fields_for :token do |token_form| %>
+			<%= token_form.text_field :token %>
+		<% end %>
+	</td>
+	<td>
+		<%=
+		@items = Lemma.find(:all, :order => "lemma")
+		annotation_form.collection_select "lemma_id", @items, :id, :lemma,{}, {:class=>'editable'}
+		%>
+		
+	</td>
+	<td>
+			
+		<%=
+		@items = Norm.find(:all, :order => "norm")
+		annotation_form.collection_select "norm_id", @items, :id, :norm,{}, {:class=>'editable'} 
+		%>
+		
+	</td>
+	<td>
+			
+		<%=
+		@items = Partofspeech.find(:all, :order => "partofspeech")
+		annotation_form.collection_select "partofspeech_id", @items, :id, :partofspeech 
+		%>
+		
+	</td>
+		
+		 
+	</tr>
+  <% end %>
+</table>
+  <%= submit_tag %>
+</div>
+<div class="span-7 last">
+	<h1>Editing <%= document_form.text_field :name, {:class=>'title'} %></h1>
+	<ul>
+		<li>Use &uarr; &amp; &darr; to move up and down.</li>
+		<li>Use <span style="border:1px solid black;">&nbsp;Tab&nbsp;</span> to move right.</li>
+		<li>The current selection is coloured.</li>
+		<li>You can type new values into Lemma &amp; Norm.</li>
+	</ul>
+</div>
+<% end %>
+<script>
+	document.forms[0].elements[4].focus();
+</script>

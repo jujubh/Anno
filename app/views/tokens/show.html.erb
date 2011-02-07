@@ -1,0 +1,13 @@
+<p>
+  <b>Token:</b>
+  <%=h @token.token %>
+</p>
+
+<p>
+  <b>Annotation:</b>
+  <%=h @token.annotation_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_token_path(@token) %> |
+<%= link_to 'Back', tokens_path %>
